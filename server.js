@@ -5,6 +5,10 @@ const mongoose = require('mongoose')
 const Song = require('./models/song.js')
 const app = express()
 
+const PORT= process.env.PORT || 3000;
+
+
+
 const DB=process.env.DATABASE_URL.replace('<PASSWORD>',process.env.DATABASE_PASSWORD);
 
 mongoose.connect(DB, {
@@ -39,4 +43,6 @@ app.get('/songs/:id', async (req, res) => {
   res.render('index', { song: song })
 })
 
-app.listen(5000)
+app.listen(PORT,()=>{
+  console.log('Server started')
+})
