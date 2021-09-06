@@ -1,9 +1,13 @@
+const dotenv= require('dotenv');
+dotenv.config();
 const express = require('express')
 const mongoose = require('mongoose')
 const Song = require('./models/song.js')
 const app = express()
 
-mongoose.connect('mongodb://localhost/songRecorder', {
+const DB=process.env.DATABASE_URL.replace('<PASSWORD>',process.env.DATABASE_PASSWORD);
+
+mongoose.connect(DB, {
   useNewUrlParser: true, useUnifiedTopology: true
 })
 
